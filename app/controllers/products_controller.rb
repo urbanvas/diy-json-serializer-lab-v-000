@@ -5,13 +5,17 @@ class ProductsController < ApplicationController
     render json: ProductSerializer.serialize(product)
   end
 
+  def show
+    @product = Product.find(params[:id])
+  end
+
   def index
     @products = Product.all
   end
 
   def inventory
     product = Product.find(params[:id])
-    binding.pry
+    # binding.pry
     render plain: product.inventory > 0 ? true : false
   end
 
